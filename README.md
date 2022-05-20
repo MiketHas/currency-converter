@@ -6,7 +6,7 @@ Still working on it to add API, so that the currency vaules weren't set permanen
 
 ## Demo
 
-demo HERE
+![currency_converter](https://user-images.githubusercontent.com/97113363/169500635-025c8535-57d0-49cb-9447-aeef60b86430.gif)
 
 
 ## Run Locally
