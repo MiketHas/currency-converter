@@ -14,7 +14,7 @@ Still working on it to add API, so that the currency vaules weren't set permanen
 Go to the .jar file directory
 
 ```bash
-  \out\artifacts\CurrencyConverter_GUI.jar
+  \out\artifacts\CurrencyConverter_GUI_jar
 ```
 
 Run
