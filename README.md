@@ -1,7 +1,7 @@
 
 # Currency Converter
 
-A simple currency converter. Only PLN/USD/EUR/GBP/RUB.
+A simple currency converter. Only PLN/USD/EUR/GBP/HKD.
 Still working on it to add API, so that the currency vaules weren't set permanently.
 
 ## Demo
