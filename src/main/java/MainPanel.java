@@ -1,3 +1,5 @@
+package main.java;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,9 +16,19 @@ public class MainPanel extends JPanel implements ActionListener {
     JComboBox currency1, currency2;
     JTextField inputField, resultField;
     JButton convertButton;
-    double eur = 4.9, usd = 4.5, rub = 0.031, gbp = 5.9;
 
     DecimalFormat df = new DecimalFormat("0.00");
+
+    final String eur = "EUR";
+    final String usd = "USD";
+    final String hkd = "HKD";
+    final String gbp = "GBP";
+    final String pln = "PLN";
+
+    double currencyEUR = Currencies.eur;
+    double currencyUSD = Currencies.usd;
+    double currencyHKD = Currencies.hkd;
+    double currencyGBP = Currencies.gbp;
 
     MainPanel() {
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
@@ -28,21 +40,21 @@ public class MainPanel extends JPanel implements ActionListener {
 
         currency1 = new JComboBox();
         currency1.setBounds(10, 10, 80, 30);
-        currency1.addItem("PLN");
-        currency1.addItem("EUR");
-        currency1.addItem("USD");
-        currency1.addItem("RUB");
-        currency1.addItem("GBP");
+        currency1.addItem(pln);
+        currency1.addItem(eur);
+        currency1.addItem(usd);
+        currency1.addItem(hkd);
+        currency1.addItem(gbp);
         currency1.addActionListener(this);
         this.add(currency1);
 
         currency2 = new JComboBox();
         currency2.setBounds(100, 10, 80, 30);
-        currency2.addItem("PLN");
-        currency2.addItem("EUR");
-        currency2.addItem("USD");
-        currency2.addItem("RUB");
-        currency2.addItem("GBP");
+        currency2.addItem(pln);
+        currency2.addItem(eur);
+        currency2.addItem(usd);
+        currency2.addItem(hkd);
+        currency2.addItem(gbp);
         currency2.addActionListener(this);
         this.add(currency2);
 
@@ -60,7 +72,6 @@ public class MainPanel extends JPanel implements ActionListener {
         convertButton.setBounds(10, 75, 170, 30);
         convertButton.addActionListener(this);
         this.add(convertButton);
-
     }
 
     public String convertToPLN(double value1, double value2) {
@@ -97,44 +108,44 @@ public class MainPanel extends JPanel implements ActionListener {
             double money = Double.parseDouble(inputField.getText());
 
             switch (firstSelectedCurrency) {
-                case "PLN":
+                case pln:
                     switch (secondSelectedCurrency) {
-                        case "USD" -> resultField.setText(convertFromPLN(money, usd));
-                        case "EUR" -> resultField.setText(convertFromPLN(money, eur));
-                        case "GBP" -> resultField.setText(convertFromPLN(money, gbp));
-                        case "RUB" -> resultField.setText(convertFromPLN(money, rub));
+                        case usd -> resultField.setText(convertFromPLN(money, currencyUSD));
+                        case eur -> resultField.setText(convertFromPLN(money, currencyEUR));
+                        case gbp -> resultField.setText(convertFromPLN(money, currencyGBP));
+                        case hkd -> resultField.setText(convertFromPLN(money, currencyHKD));
                     }
                     break;
-                case "USD":
+                case usd:
                     switch (secondSelectedCurrency) {
-                        case "PLN" -> resultField.setText(convertToPLN(money, usd));
-                        case "EUR" -> resultField.setText(convertForeignCorrency(money, usd, eur));
-                        case "GBP" -> resultField.setText(convertForeignCorrency(money, usd, gbp));
-                        case "RUB" -> resultField.setText(convertForeignCorrency(money, usd, rub));
+                        case pln -> resultField.setText(convertToPLN(money, currencyUSD));
+                        case eur -> resultField.setText(convertForeignCorrency(money, currencyUSD, currencyEUR));
+                        case gbp -> resultField.setText(convertForeignCorrency(money, currencyUSD, currencyGBP));
+                        case hkd -> resultField.setText(convertForeignCorrency(money, currencyUSD, currencyHKD));
                     }
                     break;
-                case "EUR":
+                case eur:
                     switch (secondSelectedCurrency) {
-                        case "PLN" -> resultField.setText(convertToPLN(money, eur));
-                        case "USD" -> resultField.setText(convertForeignCorrency(money, eur, usd));
-                        case "GBP" -> resultField.setText(convertForeignCorrency(money, eur, gbp));
-                        case "RUB" -> resultField.setText(convertForeignCorrency(money, eur, rub));
+                        case pln -> resultField.setText(convertToPLN(money, currencyEUR));
+                        case usd -> resultField.setText(convertForeignCorrency(money, currencyEUR, currencyUSD));
+                        case gbp -> resultField.setText(convertForeignCorrency(money, currencyEUR, currencyGBP));
+                        case hkd -> resultField.setText(convertForeignCorrency(money, currencyEUR, currencyHKD));
                     }
                     break;
-                case "GBP":
+                case gbp:
                     switch (secondSelectedCurrency) {
-                        case "PLN" -> resultField.setText(convertToPLN(money, gbp));
-                        case "USD" -> resultField.setText(convertForeignCorrency(money, gbp, usd));
-                        case "EUR" -> resultField.setText(convertForeignCorrency(money, gbp, eur));
-                        case "RUB" -> resultField.setText(convertForeignCorrency(money, gbp, rub));
+                        case pln -> resultField.setText(convertToPLN(money, currencyGBP));
+                        case usd -> resultField.setText(convertForeignCorrency(money, currencyGBP, currencyUSD));
+                        case eur -> resultField.setText(convertForeignCorrency(money, currencyGBP, currencyEUR));
+                        case hkd -> resultField.setText(convertForeignCorrency(money, currencyGBP, currencyHKD));
                     }
                     break;
-                case "RUB":
+                case hkd:
                     switch (secondSelectedCurrency) {
-                        case "PLN" -> resultField.setText(convertToPLN(money, rub));
-                        case "USD" -> resultField.setText(convertForeignCorrency(money, rub, usd));
-                        case "EUR" -> resultField.setText(convertForeignCorrency(money, rub, eur));
-                        case "GBP" -> resultField.setText(convertForeignCorrency(money, rub, gbp));
+                        case pln -> resultField.setText(convertToPLN(money, currencyHKD));
+                        case usd -> resultField.setText(convertForeignCorrency(money, currencyHKD, currencyUSD));
+                        case eur -> resultField.setText(convertForeignCorrency(money, currencyHKD, currencyEUR));
+                        case gbp -> resultField.setText(convertForeignCorrency(money, currencyHKD, currencyGBP));
                     }
                     break;
             }
