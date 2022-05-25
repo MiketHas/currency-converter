@@ -1,8 +1,9 @@
 
 # Currency Converter
 
-A simple currency converter. Only PLN/USD/EUR/GBP/HKD.
-Still working on it to add API, so that the currency vaules weren't set permanently.
+A simple currency converter. Only PLN/USD/EUR/GBP/HKD but they are updated on the start of the app.
+
+I used Maven framework with HTMLUnit.
 
 ## Demo
 
